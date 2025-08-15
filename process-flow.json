@@ -1,0 +1,341 @@
+{
+  "processFlow": {
+    "name": "石灰石-石膏湿法脱硫工艺",
+    "description": "采用石灰石浆液作为吸收剂，通过喷淋塔内的气液接触去除烟气中的二氧化硫",
+    "steps": [
+      {
+        "id": "01",
+        "name": "烟气预处理",
+        "description": "原烟气经过除尘器预处理，去除大颗粒粉尘",
+        "equipment": "电除尘器/布袋除尘器",
+        "parameters": {
+          "temperature": "120-150°C",
+          "pressure": "0.1 MPa",
+          "dustConcentration": "<50 mg/Nm³",
+          "so2Concentration": "2000-3000 mg/Nm³"
+        },
+        "position": [-30, 15, 0],
+        "connections": ["02"]
+      },
+      {
+        "id": "02",
+        "name": "烟气冷却",
+        "description": "通过换热器或直接喷水冷却烟气至适宜温度",
+        "equipment": "烟气冷却器",
+        "parameters": {
+          "inletTemperature": "120-150°C",
+          "outletTemperature": "60-80°C",
+          "coolingWater": "循环水",
+          "heatExchange": "15-20 MW"
+        },
+        "position": [-20, 15, 0],
+        "connections": ["03"]
+      },
+      {
+        "id": "03",
+        "name": "吸收塔进气",
+        "description": "冷却后的烟气从塔底进入吸收塔",
+        "equipment": "进气管道系统",
+        "parameters": {
+          "gasFlow": "150000 Nm³/h",
+          "temperature": "60°C",
+          "velocity": "3-4 m/s",
+          "pressureDrop": "<500 Pa"
+        },
+        "position": [0, 2, 0],
+        "connections": ["04"]
+      },
+      {
+        "id": "04",
+        "name": "气体分布",
+        "description": "通过气体分布器使烟气均匀分布在塔截面上",
+        "equipment": "多孔板气体分布器",
+        "parameters": {
+          "openingRatio": "15%",
+          "holeSize": "10mm",
+          "velocityUniformity": ">95%",
+          "pressureDrop": "<300 Pa"
+        },
+        "position": [0, 4, 0],
+        "connections": ["05"]
+      },
+      {
+        "id": "05",
+        "name": "填料层传质",
+        "description": "烟气通过填料层与石灰石浆液进行气液传质",
+        "equipment": "陶瓷拉西环填料",
+        "parameters": {
+          "packingHeight": "15 m",
+          "specificSurfaceArea": "250 m²/m³",
+          "voidFraction": "0.74",
+          "massTransferCoefficient": "0.05 m/s"
+        },
+        "position": [0, 12, 0],
+        "connections": ["06"]
+      },
+      {
+        "id": "06",
+        "name": "第一层喷淋",
+        "description": "第一层喷嘴喷淋石灰石浆液，进行初步脱硫",
+        "equipment": "空心锥形喷嘴",
+        "parameters": {
+          "nozzleCount": 40,
+          "flowRate": "167 m³/h",
+          "pressure": "0.3 MPa",
+          "dropletSize": "2-3 mm",
+          "sprayAngle": "90°"
+        },
+        "position": [0, 10, 0],
+        "connections": ["07"]
+      },
+      {
+        "id": "07",
+        "name": "第二层喷淋",
+        "description": "第二层喷嘴继续喷淋，提高脱硫效率",
+        "equipment": "空心锥形喷嘴",
+        "parameters": {
+          "nozzleCount": 40,
+          "flowRate": "167 m³/h",
+          "pressure": "0.3 MPa",
+          "dropletSize": "2-3 mm",
+          "sprayAngle": "90°"
+        },
+        "position": [0, 16, 0],
+        "connections": ["08"]
+      },
+      {
+        "id": "08",
+        "name": "第三层喷淋",
+        "description": "第三层喷嘴进行最终脱硫，确保达标排放",
+        "equipment": "空心锥形喷嘴",
+        "parameters": {
+          "nozzleCount": 40,
+          "flowRate": "166 m³/h",
+          "pressure": "0.3 MPa",
+          "dropletSize": "2-3 mm",
+          "sprayAngle": "90°"
+        },
+        "position": [0, 22, 0],
+        "connections": ["09"]
+      },
+      {
+        "id": "09",
+        "name": "第一级除雾",
+        "description": "第一级屋脊式除雾器高效去除烟气中的液滴",
+        "equipment": "屋脊式除雾器",
+        "parameters": {
+          "efficiency": ">99.8%",
+          "thickness": "180mm",
+          "plateAngle": "30°",
+          "plateSpacing": "25mm",
+          "plateCount": 16,
+          "pressureDrop": "<80 Pa",
+          "material": "316L不锈钢人字形除雾板",
+          "washingSystem": "增强型三层冲洗系统"
+        },
+        "position": [0, 25, 0],
+        "connections": ["10"]
+      },
+      {
+        "id": "10",
+        "name": "第二级除雾",
+        "description": "第二级屋脊式除雾器进一步去除细小液滴，配备板间精细冲洗",
+        "equipment": "屋脊式除雾器",
+        "parameters": {
+          "efficiency": ">99.9%",
+          "thickness": "180mm",
+          "plateAngle": "30°",
+          "plateSpacing": "20mm",
+          "plateCount": 16,
+          "pressureDrop": "<60 Pa",
+          "material": "316L不锈钢人字形除雾板",
+          "washingSystem": "板间精细冲洗 + 微型雾化"
+        },
+        "position": [0, 28, 0],
+        "connections": ["11"]
+      },
+      {
+        "id": "11",
+        "name": "净烟气排放",
+        "description": "处理后的净烟气从塔顶排出",
+        "equipment": "出气管道系统",
+        "parameters": {
+          "gasFlow": "148500 Nm³/h",
+          "temperature": "55°C",
+          "so2Concentration": "<35 mg/Nm³",
+          "moistureContent": "饱和"
+        },
+        "position": [0, 32, 0],
+        "connections": ["12"]
+      },
+      {
+        "id": "12",
+        "name": "烟囱排放",
+        "description": "净烟气通过烟囱排入大气",
+        "equipment": "烟囱",
+        "parameters": {
+          "height": "120 m",
+          "diameter": "6 m",
+          "velocity": "15 m/s",
+          "so2EmissionRate": "<100 mg/Nm³"
+        },
+        "position": [20, 40, 0],
+        "connections": []
+      },
+      {
+        "id": "13",
+        "name": "石灰石制备",
+        "description": "石灰石粉与水混合制备吸收剂浆液",
+        "equipment": "石灰石制备系统",
+        "parameters": {
+          "limestoneConsumption": "2.5 t/h",
+          "fineness": ">90% <325目",
+          "slurryConcentration": "20%",
+          "pH": "5.5-6.0"
+        },
+        "position": [-40, 5, -20],
+        "connections": ["14"]
+      },
+      {
+        "id": "14",
+        "name": "浆液循环",
+        "description": "循环泵将浆液送至喷淋层进行循环喷淋",
+        "equipment": "离心循环泵",
+        "parameters": {
+          "flowRate": "500 m³/h",
+          "head": "35 m",
+          "power": "200 kW",
+          "efficiency": "85%"
+        },
+        "position": [-20, 5, -10],
+        "connections": ["06", "07", "08"]
+      },
+      {
+        "id": "15",
+        "name": "浆液收集",
+        "description": "反应后的浆液在塔底收集池中收集",
+        "equipment": "浆液收集池",
+        "parameters": {
+          "volume": "50 m³",
+          "residenceTime": "6 min",
+          "pH": "5.0-5.5",
+          "solidContent": "15-20%"
+        },
+        "position": [0, 1, 0],
+        "connections": ["16"]
+      },
+      {
+        "id": "16",
+        "name": "石膏脱水",
+        "description": "反应生成的石膏通过脱水系统分离",
+        "equipment": "真空皮带脱水机",
+        "parameters": {
+          "capacity": "10 t/h",
+          "moistureContent": "<10%",
+          "purity": ">95%",
+          "recovery": ">99%"
+        },
+        "position": [30, 5, -20],
+        "connections": ["17"]
+      },
+      {
+        "id": "17",
+        "name": "石膏储存",
+        "description": "脱水后的石膏产品储存待售",
+        "equipment": "石膏储仓",
+        "parameters": {
+          "capacity": "500 t",
+          "moistureContent": "<10%",
+          "purity": ">95%",
+          "marketValue": "建材原料"
+        },
+        "position": [40, 5, -20],
+        "connections": []
+      },
+      {
+        "id": "18",
+        "name": "废水处理",
+        "description": "系统废水经处理后回用或达标排放",
+        "equipment": "废水处理系统",
+        "parameters": {
+          "flowRate": "20 m³/h",
+          "pH": "6-9",
+          "suspendedSolids": "<30 mg/L",
+          "recycleRate": ">90%"
+        },
+        "position": [20, 5, -30],
+        "connections": ["14"]
+      }
+    ],
+    "chemicalReactions": [
+      {
+        "name": "SO2吸收反应",
+        "equation": "SO2 + H2O → H2SO3",
+        "description": "二氧化硫溶于水形成亚硫酸"
+      },
+      {
+        "name": "石灰石溶解",
+        "equation": "CaCO3 + H2O + CO2 → Ca(HCO3)2",
+        "description": "石灰石在水中溶解"
+      },
+      {
+        "name": "中和反应",
+        "equation": "H2SO3 + CaCO3 → CaSO3 + H2O + CO2",
+        "description": "亚硫酸与碳酸钙中和生成亚硫酸钙"
+      },
+      {
+        "name": "氧化反应",
+        "equation": "CaSO3 + 1/2O2 + 2H2O → CaSO4·2H2O",
+        "description": "亚硫酸钙氧化生成石膏"
+      }
+    ],
+    "massBalance": {
+      "input": {
+        "flueGas": "150000 Nm³/h",
+        "so2": "300 kg/h",
+        "limestone": "2500 kg/h",
+        "water": "5000 kg/h"
+      },
+      "output": {
+        "cleanGas": "148500 Nm³/h",
+        "so2Removed": "285 kg/h",
+        "gypsum": "1425 kg/h",
+        "wasteWater": "500 kg/h"
+      },
+      "efficiency": {
+        "so2Removal": "95%",
+        "limestoneUtilization": "95%",
+        "gypsumPurity": "95%"
+      }
+    },
+    "energyBalance": {
+      "consumption": {
+        "circulationPumps": "600 kW",
+        "agitators": "50 kW",
+        "compressors": "200 kW",
+        "auxiliaries": "100 kW",
+        "total": "950 kW"
+      },
+      "recovery": {
+        "heatExchange": "15 MW",
+        "steamGeneration": "5 MW"
+      }
+    },
+    "environmentalImpact": {
+      "emissions": {
+        "so2": "<35 mg/Nm³",
+        "particulates": "<5 mg/Nm³",
+        "co2": "减排15%"
+      },
+      "byproducts": {
+        "gypsum": "可用作建材原料",
+        "wasteWater": "处理后回用"
+      },
+      "benefits": {
+        "airQuality": "显著改善",
+        "resourceUtilization": "石膏资源化利用",
+        "economicValue": "年产值500万元"
+      }
+    }
+  }
+}
